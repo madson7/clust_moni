@@ -1,0 +1,85 @@
+version: '3.4'
+networks:
+  stacks_observability:
+    external:
+      name: stacks_observability
+volumes:
+  postgresql_data: {}
+services:
+  postgres:
+    environment:
+      POSTGRES_DB: timescale
+      POSTGRES_PASSWORD: "UMVUBBn)RZiQ9f"
+      POSTGRES_USER: postgres
+      POSTGRES_HOST_AUTH_METHOD: trust
+    image: timescale/timescaledb-ha:pg14-latest
+    volumes:
+    - postgresql_data:/home/postgres
+    networks:
+      - stacks_observability
+    ports:
+    - protocol: tcp
+      published: 5432
+      target: 5432
+    deploy:
+      placement:
+        constraints:
+        - node.hostname == docker-1
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      update_config:
+        delay: 10s
+        parallelism: 2
+
+  promscale:
+    image: "timescale/promscale"
+    environment:
+      PROMSCALE_DB_CONNECT_RETRIES: 10
+      PROMSCALE_WEB_TELEMETRY_PATH: /metrics-text
+      PROMSCALE_DB_URI: postgres://postgres:UMVUBBn)RZiQ9f@postgres:5432/timescale?sslmode=allow
+      PROMSCALE_ENABLE_FEATURE: tracing
+      PROMSCALE_OTLP_GRPC_SERVER_LISTEN_ADDRESS: 0.0.0.0:9202
+    networks:
+      - stacks_observability
+    ports:
+    - protocol: tcp
+      published: 9201
+      target: 9201
+    - protocol: tcp
+      published: 9202
+      target: 9202
+    deploy:
+      placement:
+        constraints:
+        - node.hostname == docker-1
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      update_config:
+        delay: 10s
+        parallelism: 2
+
+  # jaeger:
+  #   image: jaegertracing/jaeger-query
+  #   ports:
+  #   - protocol: tcp
+  #     published: 16685
+  #     target: 16685
+  #     published: 16686
+  #     target: 16686
+  #     published: 16687
+  #     target: 16687
+  #   environment:
+  #     SPAN_STORAGE_TYPE: grpc-plugin
+  #     GRPC_STORAGE_SERVER: promscale:9202
+  #   deploy:
+  #     placement:
+  #       constraints:
+  #       - node.hostname == docker-1
+  #     replicas: 1
+  #     restart_policy:
+  #       condition: on-failure
+  #     update_config:
+  #       delay: 10s
+  #       parallelism: 2

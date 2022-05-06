@@ -1,0 +1,30 @@
+groups:
+- name: Fping
+  rules:
+  - alert: FPING-CHIP
+    expr: fping_lost_count{job="FPING-CHIP"} > 20
+    for: 35s
+    labels:
+      team: slack_alertmanager
+      severity: critical
+    annotations:
+      summary: "Chipeira fora"
+      description: "Chipeira Inacessivel! \n"
+  - alert: FPING_GERAL
+    expr: fping_lost_count{job="FPING-GERAL"} > 20
+    for: 35s
+    labels:
+      team: slack_alertmanager
+      severity: critical
+    annotations:
+      summary: "Ips de uso geral"
+      description: "Serviço Inacessivel! \n"
+  - alert: FPING_TI
+    expr: fping_lost_count{job="FPING-TI"} > 20
+    for: 35s
+    labels:
+      team: slack_alertmanager
+      severity: critical
+    annotations:
+      summary: "Ips de uso do TI"
+      description: "Serviço Inacessivel! \n"

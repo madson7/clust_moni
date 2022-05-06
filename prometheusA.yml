@@ -1,0 +1,107 @@
+version: '3.4'
+configs:
+  AlertmanagerA:
+    file: ./config/alertmanager/alertmanager.yml
+  Srv_0A:
+    file: ./config/prometheus/alertRules/srv_0.yml
+  Fping_0A:
+    file: ./config/prometheus/alertRules/fping_0.yml
+  PrometheusA:
+    file: ./config/prometheus/prometheusA.yml
+  Prometheus_WebA:
+    file: ./config/prometheus/web-config.yml
+networks:
+  stacks_observability:
+    external:
+      name: stacks_observability
+services:
+  prometheusA:
+    command:
+    - --config.file=/etc/prometheus/prometheus.yml
+    - --storage.tsdb.path=/prometheus
+    - --web.console.libraries=/etc/prometheus/console_libraries
+    - --web.console.templates=/etc/prometheus/consoles
+    - --storage.tsdb.retention.time=24h
+    - --web.enable-lifecycle
+    configs:
+    - source: PrometheusA
+      target: /etc/prometheus/prometheus.yml
+    - source: Prometheus_WebA
+      target: /path/to/web-config.yml
+    deploy:
+      placement:
+        constraints:
+        - node.hostname == docker-2
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      update_config:
+        delay: 10s
+        parallelism: 2
+    image: prom/prometheus
+    networks:
+      - stacks_observability
+    ports:
+    - published: 9091
+      target: 9090
+    volumes:
+    - prometheus_A:/prometheus:rw
+
+  blackboxA:
+    deploy:
+      placement:
+        constraints:
+        - node.hostname == docker-2
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      update_config:
+        delay: 10s
+        parallelism: 2
+    image: prom/blackbox-exporter
+    networks:
+      - stacks_observability
+
+  fpingA:
+    deploy:
+      placement:
+        constraints:
+        - node.hostname == docker-2
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      update_config:
+        delay: 10s
+        parallelism: 2
+    image: bbrks/fping-exporter:latest
+    networks:
+      - stacks_observability
+
+  alertmanagerA:
+    command:
+    - --config.file=/etc/alertmanager/alertmanager.yml
+    - --storage.path=/alertmanager
+    configs:
+    - source: AlertmanagerA
+      target: /etc/alertmanager/alertmanager.yml
+    deploy:
+      placement:
+        constraints:
+        - node.hostname == docker-2
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      update_config:
+        delay: 10s
+        parallelism: 2
+    environment:
+      TZ: America/Belem
+    image: prom/alertmanager
+    networks:
+      - stacks_observability
+    ports:
+    - published: 9193
+      target: 9093
+
+volumes:
+  prometheus_A: {}

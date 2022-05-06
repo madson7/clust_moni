@@ -1,0 +1,309 @@
+groups:
+- name: Fping_Geral
+  rules:
+  - alert: hex_131
+    expr: fping_lost_count{instance="170.82.180.131", job="FPING_GERAL"} > 8
+    for: 5s
+    labels:
+      team: slack_alertmanager
+      severity: critical
+    annotations:
+      summary: "Serviço monitorado por ICMP"
+      description: "Serviço Inacessivel! \n"
+  - alert: Proxy_28
+    expr: fping_lost_count{instance="170.82.180.28", job="FPING_GERAL"} > 8
+    for: 5s
+    labels:
+      team: slack_alertmanager
+      severity: critical
+    annotations:
+      summary: "Serviço monitorado por ICMP"
+      description: "Serviço Inacessivel! \n"
+  - alert: MK_App
+    expr: fping_lost_count{instance="170.82.180.19", job="FPING_GERAL"} > 8
+    for: 5s
+    labels:
+      team: slack_alertmanager
+      severity: critical
+    annotations:
+      summary: "Serviço monitorado por ICMP"
+      description: "Serviço Inacessivel! \n"
+  - alert: Dalo_Radius
+    expr: fping_lost_count{instance="172.16.17.183", job="FPING_GERAL"} > 8
+    for: 5s
+    labels:
+      team: slack_alertmanager
+      severity: critical
+    annotations:
+      summary: "Serviço monitorado por ICMP"
+      description: "Serviço Inacessivel! \n"
+  - alert: INFRA-01-PA-CST  
+    expr: fping_lost_count{instance="172.18.4.2", job="FPING_GERAL"} > 8
+    for: 5s
+    labels:
+      team: slack_alertmanager
+      severity: critical
+    annotations:
+      summary: "Serviço monitorado por ICMP"
+      description: "Serviço Inacessivel! \n"
+  # - alert: Login-Vertiv_G3  
+  #   expr: fping_lost_count{instance="172.18.28.2", job="FPING_GERAL"} > 8
+  #   for: 5s
+  #   labels:
+  #     team: slack_alertmanager
+  #     severity: critical
+  #   annotations:
+  #     summary: "Serviço monitorado por ICMP"
+  #     description: "Serviço Inacessivel! \n"
+  - alert: PA-CST-STG-01    
+    expr: fping_lost_count{instance="172.18.16.20", job="FPING_GERAL"} > 8
+    for: 5s
+    labels:
+      team: slack_alertmanager
+      severity: critical
+    annotations:
+      summary: "Serviço monitorado por ICMP"
+      description: "Serviço Inacessivel! \n"
+  - alert: PowerStore       
+    expr: fping_lost_count{instance="172.18.16.20", job="FPING_GERAL"} > 8
+    for: 5s
+    labels:
+      team: slack_alertmanager
+      severity: critical
+    annotations:
+      summary: "Serviço monitorado por ICMP"
+      description: "Serviço Inacessivel! \n"
+  - alert: Backup_TI_2T     
+    expr: fping_lost_count{instance="172.16.17.19", job="FPING_GERAL"} > 8
+    for: 5s
+    labels:
+      team: slack_alertmanager
+      severity: critical
+    annotations:
+      summary: "Serviço monitorado por ICMP"
+      description: "Serviço Inacessivel! \n"
+  # - alert: CIGAM            
+  #   expr: fping_lost_count{instance="172.16.17.17", job="FPING_GERAL"} > 8
+  #   for: 5s
+  #   labels:
+  #     team: slack_alertmanager
+  #     severity: critical
+  #   annotations:
+  #     summary: "Serviço monitorado por ICMP"
+  #     description: "Serviço Inacessivel! \n"
+  # - alert: Ldap             
+  #   expr: fping_lost_count{instance="172.16.17.26", job="FPING_GERAL"} > 8
+  #   for: 5s
+  #   labels:
+  #     team: slack_alertmanager
+  #     severity: critical
+  #   annotations:
+  #     summary: "Serviço monitorado por ICMP"
+  #     description: "Serviço Inacessivel! \n"
+  - alert: MetaBase         
+    expr: fping_lost_count{instance="172.16.17.178", job="FPING_GERAL"} > 8
+    for: 5s
+    labels:
+      team: slack_alertmanager
+      severity: critical
+    annotations:
+      summary: "Serviço monitorado por ICMP"
+      description: "Serviço Inacessivel! \n"
+  - alert: MK_Backup    
+    expr: fping_lost_count{instance="172.16.17.179", job="FPING_GERAL"} > 8
+    for: 5s
+    labels:
+      team: slack_alertmanager
+      severity: critical
+    annotations:
+      summary: "Serviço monitorado por ICMP"
+      description: "Serviço Inacessivel! \n"
+  - alert: MK_DB        
+    expr: fping_lost_count{instance="172.16.17.185", job="FPING_GERAL"} > 8
+    for: 5s
+    labels:
+      team: slack_alertmanager
+      severity: critical
+    annotations:
+      summary: "Serviço monitorado por ICMP"
+      description: "Serviço Inacessivel! \n"
+  - alert: MK_Radius        
+    expr: fping_lost_count{instance="172.16.0.201", job="FPING_GERAL"} > 8
+    for: 5s
+    labels:
+      team: slack_alertmanager
+      severity: critical
+    annotations:
+      summary: "Serviço monitorado por ICMP"
+      description: "Serviço Inacessivel! \n"
+  - alert: Prometheus NOC   
+    expr: fping_lost_count{instance="172.16.17.188", job="FPING_GERAL"} > 8
+    for: 5s
+    labels:
+      team: slack_alertmanager
+      severity: critical
+    annotations:
+      summary: "Serviço monitorado por ICMP"
+      description: "Serviço Inacessivel! \n"
+  - alert: Radius           
+    expr: fping_lost_count{instance="172.16.17.183", job="FPING_GERAL"} > 8
+    for: 5s
+    labels:
+      team: slack_alertmanager
+      severity: critical
+    annotations:
+      summary: "Serviço monitorado por ICMP"
+      description: "Serviço Inacessivel! \n"
+  - alert: RDP_Aniel        
+    expr: fping_lost_count{instance="172.16.17.177", job="FPING_GERAL"} > 8
+    for: 5s
+    labels:
+      team: slack_alertmanager
+      severity: critical
+    annotations:
+      summary: "Serviço monitorado por ICMP"
+      description: "Serviço Inacessivel! \n"
+  - alert: RDP_Netnumen     
+    expr: fping_lost_count{instance="172.16.0.206", job="FPING_GERAL"} > 8
+    for: 5s
+    labels:
+      team: slack_alertmanager
+      severity: critical
+    annotations:
+      summary: "Serviço monitorado por ICMP"
+      description: "Serviço Inacessivel! \n"
+  - alert: RDP_UNM2000      
+    expr: fping_lost_count{instance="172.16.0.204", job="FPING_GERAL"} > 8
+    for: 5s
+    labels:
+      team: slack_alertmanager
+      severity: critical
+    annotations:
+      summary: "Serviço monitorado por ICMP"
+      description: "Serviço Inacessivel! \n"
+  - alert: RDP_NETNUMEN_NOVO
+    expr: fping_lost_count{instance="172.18.34.113", job="FPING_GERAL"} > 8
+    for: 5s
+    labels:
+      team: slack_alertmanager
+      severity: critical
+    annotations:
+      summary: "Serviço monitorado por ICMP"
+      description: "Serviço Inacessivel! \n"
+  - alert: Sea_Hotspot      
+    expr: fping_lost_count{instance="172.16.17.15", job="FPING_GERAL"} > 8
+    for: 5s
+    labels:
+      team: slack_alertmanager
+      severity: critical
+    annotations:
+      summary: "Serviço monitorado por ICMP"
+      description: "Serviço Inacessivel! \n"
+  - alert: Serviços_TI_NOC  
+    expr: fping_lost_count{instance="172.16.17.25", job="FPING_GERAL"} > 8
+    for: 5s
+    labels:
+      team: slack_alertmanager
+      severity: critical
+    annotations:
+      summary: "Serviço monitorado por ICMP"
+      description: "Serviço Inacessivel! \n"
+  - alert: sofswitch_db     
+    expr: fping_lost_count{instance="172.16.17.30", job="FPING_GERAL"} > 8
+    for: 5s
+    labels:
+      team: slack_alertmanager
+      severity: critical
+    annotations:
+      summary: "Serviço monitorado por ICMP"
+      description: "Serviço Inacessivel! \n"
+  # - alert: softswitch       
+  #   expr: fping_lost_count{instance="172.16.17.29", job="FPING_GERAL"} > 8
+  #   for: 5s
+  #   labels:
+  #     team: slack_alertmanager
+  #     severity: critical
+  #   annotations:
+  #     summary: "Serviço monitorado por ICMP"
+  #     description: "Serviço Inacessivel! \n"
+  - alert: webserver_sea    
+    expr: fping_lost_count{instance="172.16.17.28", job="FPING_GERAL"} > 8
+    for: 5s
+    labels:
+      team: slack_alertmanager
+      severity: critical
+    annotations:
+      summary: "Serviço monitorado por ICMP"
+      description: "Serviço Inacessivel! \n"
+  - alert: Win12R2S_Sinapse 
+    expr: fping_lost_count{instance="172.16.17.177", job="FPING_GERAL"} > 8
+    for: 5s
+    labels:
+      team: slack_alertmanager
+      severity: critical
+    annotations:
+      summary: "Serviço monitorado por ICMP"
+      description: "Serviço Inacessivel! \n"
+  - alert: XCP_NOC          
+    expr: fping_lost_count{instance="172.18.0.150", job="FPING_GERAL"} > 8
+    for: 5s
+    labels:
+      team: slack_alertmanager
+      severity: critical
+    annotations:
+      summary: "Serviço monitorado por ICMP"
+      description: "Serviço Inacessivel! \n"
+  - alert: XCP_TI           
+    expr: fping_lost_count{instance="172.16.17.14", job="FPING_GERAL"} > 8
+    for: 5s
+    labels:
+      team: slack_alertmanager
+      severity: critical
+    annotations:
+      summary: "Serviço monitorado por ICMP"
+      description: "Serviço Inacessivel! \n"
+  - alert: Xgspon           
+    expr: fping_lost_count{instance="172.16.17.59", job="FPING_GERAL"} > 8
+    for: 5s
+    labels:
+      team: slack_alertmanager
+      severity: critical
+    annotations:
+      summary: "Serviço monitorado por ICMP"
+      description: "Serviço Inacessivel! \n"
+  # - alert: compute_02       
+  #   expr: fping_lost_count{instance="172.16.0.24", job="FPING_GERAL"} > 8
+  #   for: 5s
+  #   labels:
+  #     team: slack_alertmanager
+  #     severity: critical
+  #   annotations:
+  #     summary: "Serviço monitorado por ICMP"
+  #     description: "Serviço Inacessivel! \n"
+  # - alert: compute_03       
+  #   expr: fping_lost_count{instance="172.16.0.25", job="FPING_GERAL"} > 8
+  #   for: 5s
+  #   labels:
+  #     team: slack_alertmanager
+  #     severity: critical
+  #   annotations:
+  #     summary: "Serviço monitorado por ICMP"
+  #     description: "Serviço Inacessivel! \n"
+  - alert: OpenStack        
+    expr: fping_lost_count{instance="172.18.0.11", job="FPING_GERAL"} > 8
+    for: 5s
+    labels:
+      team: slack_alertmanager
+      severity: critical
+    annotations:
+      summary: "Serviço monitorado por ICMP"
+      description: "Serviço Inacessivel! \n"
+  - alert: VMware_ESXi      
+    expr: fping_lost_count{instance="172.18.0.180", job="FPING_GERAL"} > 8
+    for: 5s
+    labels:
+      team: slack_alertmanager
+      severity: critical
+    annotations:
+      summary: "Serviço monitorado por ICMP"
+      description: "Serviço Inacessivel! \n"
