@@ -45,6 +45,4 @@ $ sudo su
 # docker stack deploy -c promscale.yml promscale
 ```
 ## Cluster visualizer
-
-img
-
+![](./img/Screenshot.png)
