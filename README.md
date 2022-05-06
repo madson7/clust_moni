@@ -4,12 +4,13 @@
 # vagrant up
 # vagrant global-status
 ```
+```
 id       name     provider state     directory                           
 -------------------------------------------------------------------------         
 aa9898c  docker-2 libvirt preparing /home/madson/Vagrant/swarm          
 70fd460  docker-3 libvirt preparing /home/madson/Vagrant/swarm          
 14edd68  docker-1 libvirt running   /home/madson/Vagrant/swarm 
-
+```
 ```
 # vagrant ssh docker-1
 $ sudo su
